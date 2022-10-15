@@ -1,0 +1,44 @@
+.navIcon{
+    display: none;
+}
+.navigateBar{
+    width:100%;
+}
+.formCategory{
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    padding:0.6rem 2rem;
+    list-style: none;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap:25px;
+}
+.formCategory>li{
+    min-width:80px;
+    background-color: brown;
+}
+.formIndexList{
+    display:none;
+    flex-direction: column;
+}
+
+@media screen and (max-width :32.5rem) {
+    .navIcon{
+        display:inline-block;
+        max-width: 100%;
+    }
+    nav li{
+        flex-direction: column;
+        display:none;
+    }
+    .navigateBar{
+        padding-right: 1rem;
+        position:fixed;
+        right:-25px;
+        bottom: 30px;
+        width:auto;
+    }
+
+}

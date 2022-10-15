@@ -2,8 +2,8 @@
 
 
 # dependencies
-/form-master-node/node_modules
-/form-master-react/node_modules
+/form-master-node/node_modules/
+/form-master-react/node_modules/
 /form-master-react/.pnp
 /form-master-node/.pnp
 /form-master-react/.pnp.js

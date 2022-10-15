@@ -1,0 +1,29 @@
+.searchBar{
+    width:45%;
+}
+
+.formSearchForm label{
+    display:flex;
+}
+.formSearchForm select{
+    border:none;
+    border-bottom: 1px solid black;
+    padding-left:1rem;
+    outline:none;
+}
+.formSearchForm input{
+    height: 2rem;
+    width:100%;
+    border:none;
+    border-bottom: 1px solid black;
+    padding-left:1rem;
+    outline:none;
+}
+
+@media screen and (max-width :32.5rem) {
+    .searchBar{
+        margin-right: 0.7rem;
+        width:100%;
+        padding: 0.3rem 0.6rem ;
+    }
+}
