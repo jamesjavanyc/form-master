@@ -1,0 +1,33 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/form-master-node/node_modules
+/form-master-react/node_modules
+/form-master-react/.pnp
+/form-master-node/.pnp
+/form-master-react/.pnp.js
+/form-master-node/.pnp.js
+
+# testing
+/form-master-node/node_modules/coverage
+/form-master-react/node_modules/coverage
+
+# production
+/form-master-node/node_modules/build
+/form-master-react/node_modules/build
+
+# misc
+/form-master-node/.DS_Store
+/form-master-node/.env.local
+/form-master-node/.env.development.local
+/form-master-node/.env.test.local
+/form-master-node/.env.production.local
+/form-master-react/.DS_Store
+/form-master-react/.env.local
+/form-master-react/.env.development.local
+/form-master-react/.env.test.local
+/form-master-react/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
