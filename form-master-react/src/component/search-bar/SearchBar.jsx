@@ -6,7 +6,7 @@ const SearchBar = () => {
         <div className='searchBar'>
             <form className='formSearchForm' action="" >
                 <label htmlFor="formSearchIndex">
-                    <img className="headerIcon" src="./icons/search.png" alt="search icon"/>
+                    {/* <img className="headerIcon" src="./icons/search.png" alt="search icon"/> */}
                     <select>
                         <option value="form">Form</option>
                     </select>
