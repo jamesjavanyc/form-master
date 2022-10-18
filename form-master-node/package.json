@@ -16,6 +16,8 @@
         "nodemon": "^2.0.12",
         "path": "^0.12.7"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "cors": "^2.8.5"
+    },
     "description": ""
 }

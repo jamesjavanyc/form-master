@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState,  useEffect } from 'react'
 import PropTypes from 'prop-types';
 
-const CallBackButton = (props) => {
+const CallBackButton = React.memo((props) => {
     const {name, callBack, paramAsCallBack, classForButton, clickNotice} = props
 
-    const [click, setClick] = useState(false)
+    const [state, setState] = useState({click:false})
 
     const clickAction =(e)=>{
         e.preventDefault();
-        setClick(!click)
+        setState({click:!state.click})
         if(clickNotice){
-            if(!click){
+            if(!state.click){
                 e.target.style.backgroundColor = "red"
             }else{
                 e.target.style.backgroundColor = "white"
@@ -25,7 +25,7 @@ const CallBackButton = (props) => {
     return (
         <button className={classForButton} onClick={clickAction}>{name}</button>
     )
-}
+})
 
 CallBackButton.defaultProps={
     clickNotice:true,
