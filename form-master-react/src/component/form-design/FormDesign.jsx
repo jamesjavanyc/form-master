@@ -5,29 +5,39 @@ import { FormItemDetail } from 'component/form-item/FormItem'
 import axios from 'axios'
 import CircularJSON from 'circular-json'
 
+export class FormBody{
+    constructor(){
+        this.title=""
+        this.category =[]
+        this.rootField= new FormItemDetail(-1)
+    }
+}
 
 const FormDesign = () => {
-    const [formBody, setFormBody] = useState({
-        title: "",
-        rootField: new FormItemDetail()
-    })
 
-    const setAttributeWithEvent = (attri) => {
-        return (e) => {
-            formBody[attri] = e.target.value
-            setFormBody({ ...formBody })
+    const [formBody, setFormBody] = useState(new FormBody())
+
+    const setAttribute = (attri) => {
+        return (value) => {
+            formBody[attri] = value
+            refresh()
         }
     }
     const refresh = () => {
-        setFormBody({ ...formBody })
+        let newBody = new FormBody()
+        newBody.title = formBody.title
+        newBody.rootField = formBody.rootField
+        setFormBody(newBody)
     }
-    const test = async(e)=>{
+    
+    const saveForm = async(e)=>{
         e.preventDefault()
         try{
-            let res =await axios.post("http://localhost:5000/echo",{data:CircularJSON.stringify(formBody)})
+            //todo: 保存模板
+            let res =await axios.post("api/echo",{data:CircularJSON.stringify(formBody)})
             console.log(res.data)
-        }catch (e){
-            console.error(e)
+        }catch (error){
+            console.error(error)
         }
     }
 
@@ -36,32 +46,19 @@ const FormDesign = () => {
         <div className='formDesign'>
             <form>
                 <fieldset>
-                    <legend>Add form</legend>
-                    <label htmlFor='formTitle'>
-                        <input type="text" id='formTitle' placeholder='Input your form title here...' onChange={setAttributeWithEvent("title")} required />
+                    <label className='formTitle' htmlFor='formTitle'>
+                        <input type="text" id='formTitle' placeholder='Input your form title here...' onChange={ (e)=>{ setAttribute("title")(e.target.value)}} required />
                     </label>
                     <FormItem action="CREATE"
                         formItem={formBody.rootField}
-                        parentFormItem={formBody}
+                        parentFormItem={formBody.rootField}
                         deleteCurrentSubField={() => { throw Error("Cannot delete the root field of the form.") }}
                         updateView={refresh} />
                 </fieldset>
-                <input type="submit" onClick = {test}/>
+                <input type="submit" onClick = {saveForm}/>
             </form>
         </div>
     )
 }
 
 export default FormDesign
-
-        // {
-        //             fieldName: "",
-        //             fieldValue:null,
-        //             asTitle: false,
-        //             important: false,
-        //             required: false,
-        //             disabled: false,
-        //             label: null,
-        //             subFields: [],
-        //             configureWindow: () => { return <></> }
-        //         }

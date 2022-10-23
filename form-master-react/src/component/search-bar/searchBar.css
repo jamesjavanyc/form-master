@@ -6,19 +6,26 @@
     display:flex;
 }
 .formSearchForm select{
+    z-index: 100;
+    -webkit-appearance: none;
+    border-radius: 0;
+    width:30%;
+    max-width: 150px;
+    text-align: center;
+    background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;   
     border:none;
     border-bottom: 1px solid black;
-    padding-left:1rem;
+    padding:9px 0  ;
     outline:none;
 }
-.formSearchForm input{
-    height: 2rem;
+.searchBarInputSelect{
+    margin-left:-16px;
     width:100%;
-    border:none;
-    border-bottom: 1px solid black;
+    border:0;
     padding-left:1rem;
     outline:none;
 }
+
 
 @media screen and (max-width :32.5rem) {
     .searchBar{

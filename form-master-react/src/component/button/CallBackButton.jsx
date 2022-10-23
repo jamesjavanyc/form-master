@@ -1,19 +1,40 @@
-import React, { useState,  useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 
 const CallBackButton = React.memo((props) => {
-    const {name, callBack, paramAsCallBack, classForButton, clickNotice} = props
+    const {name, callBack, paramAsCallBack, classForButton, clickNotice,style} = props
 
-    const [state, setState] = useState({click:false})
+    const [state, setState] = useState({click:false, style:undefined})
+
+    const getStyle = ()=>{
+        if(state.style){
+            return state.style
+        }else if(style){
+            state.style = style
+            return style
+        }else{
+            let defaultStyle =  {
+                fontSize:"1rem",
+                padding:"2px 4px"
+            }
+            state.style = defaultStyle
+            return defaultStyle
+        }
+    }
 
     const clickAction =(e)=>{
         e.preventDefault();
-        setState({click:!state.click})
         if(clickNotice){
             if(!state.click){
-                e.target.style.backgroundColor = "red"
+                setState(state =>( {...state, 
+                    click:!state.click, 
+                    style:{...state.style, backgroundColor:"#3A3535", color: "white",border:"1px solid rgb(118,118,118)"}
+                }))
             }else{
-                e.target.style.backgroundColor = "white"
+                setState(state =>( {...state, 
+                    click:!state.click, 
+                    style:{...state.style, backgroundColor:"rgb(239,239,239)", color: "black",border:"1px solid rgb(118,118,118)"}
+                }))
             }
         }
         if(callBack){
@@ -23,7 +44,7 @@ const CallBackButton = React.memo((props) => {
     }
 
     return (
-        <button className={classForButton} onClick={clickAction}>{name}</button>
+        <button className={classForButton} onClick={clickAction} style={getStyle()}>{name()}</button>
     )
 })
 
@@ -33,11 +54,12 @@ CallBackButton.defaultProps={
 }
 
 CallBackButton.propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.func.isRequired,
     classForButton: PropTypes.string,
     clickNotice:PropTypes.bool,
     callBack:PropTypes.func,
     paramAsCallBack:PropTypes.func,
+    style:PropTypes.object,
 }
 
 export default CallBackButton

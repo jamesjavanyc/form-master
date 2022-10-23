@@ -1,10 +1,8 @@
 .App {
   min-width: 375px;
-  max-width: 2560px;
   margin:0 auto;
 }
 .page{
-  min-height: 100vh;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
