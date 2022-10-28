@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 const CallBackSelect = (props) => {
-    const { name, options, classForSelect, style, selectTagStyle } = props
+    const { name, options, classForSelect, style, selectTagStyle, onSelectCallBack } = props
 
     const getStyle = () => {
         if (style) {
@@ -31,11 +31,15 @@ const CallBackSelect = (props) => {
         }
     }
 
+    const selectHandler = (e)=>{
+        onSelectCallBack(e)
+    }
+
 
     return (
         <label className={classForSelect} style={getStyle()}>
             <span>{name()}&nbsp; </span>
-            <select style={getSelectTagStyle()}>
+            <select style={getSelectTagStyle()} onChange={selectHandler}>
                 {options.map((option, id)=>{
                     return (
                         <option key={id}>

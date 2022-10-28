@@ -1,13 +1,16 @@
 import React from 'react'
 import "./form-display.css"
 
-const FormDisplay = () => {
+const FormDisplay = (props) => {
+    const{} = props
+
+    
     
 
     return (
         <div className='formDisplay'>
             <form>
-
+                form dis
             </form>
         </div>
     )

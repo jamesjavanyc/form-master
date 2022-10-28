@@ -30,9 +30,9 @@ server.use(cors());
 server.use("/echo",echoRoute);
 server.use("/module",moduleRoute);
 server.use("/form",formRoute);
-server.use("/module",categoryRoute);
-server.use("/form",formTemplateRoute);
-server.use("/form",authenticationRoute);
+server.use("/category",categoryRoute);
+server.use("/form-template",formTemplateRoute);
+server.use("/auth",authenticationRoute);
 
 
 server.listen(5000,(err)=>{

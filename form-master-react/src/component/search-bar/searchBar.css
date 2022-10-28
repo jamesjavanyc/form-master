@@ -1,16 +1,24 @@
 .searchBar{
     width:45%;
 }
-
 .formSearchForm label{
     display:flex;
+    flex-direction: row-reverse;
+}
+.searchButton{
+    float:right;
+    height:1.5rem;
 }
 .formSearchForm select{
-    z-index: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    /* z-index: 1; */
     -webkit-appearance: none;
     border-radius: 0;
     width:30%;
     max-width: 150px;
+    font-size: 1rem;
     text-align: center;
     background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;   
     border:none;
@@ -18,12 +26,50 @@
     padding:9px 0  ;
     outline:none;
 }
+.indexTypeOption{
+    text-align: center;
+    display:block;
+}
+/* .indexTypeOption:hover{
+    background-color: gray;
+    color:white;
+} */
+.searchBarPlaceHolder{
+    border:none;
+    display: inline-block;
+    background: none;
+    width:30%;
+}
 .searchBarInputSelect{
     margin-left:-16px;
+    font-size: 1rem;
     width:100%;
     border:0;
-    padding-left:1rem;
+    border-bottom: 1px solid black;
+    padding-left:2rem;
     outline:none;
+    overflow: hidden;
+}
+.searBarOptionList{
+    display:inline-block;
+    height:1rem;
+    width: 100%;
+    padding-right:2rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.8rem;
+}
+.searchBarOption{
+    position:relative;
+    list-style: none;
+    background-color: rgb(241,243,244);
+    width:100%;
+    padding-right: 2rem;
+    text-indent: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 0.4rem;
+    white-space: nowrap;
+    z-index: 10;
 }
 
 
@@ -32,5 +78,12 @@
         margin-right: 0.7rem;
         width:100%;
         padding: 0.3rem 0.6rem ;
+    }
+    .searBarOptionList{
+        padding:0;
+        margin-top: 0.4rem;
+    }
+    .searchBarOption{
+        padding:0.2rem 0.5rem ;
     }
 }

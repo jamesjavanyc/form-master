@@ -23,7 +23,7 @@
     min-width: 375px;
     width:50%;
     min-height: 375px;
-    height:50%;
+    height:60%;
 }
 .loginField{
     caret-color: white;
@@ -82,4 +82,9 @@
     margin-top: 20px;
     font-size: 1.2rem;
     font-style: italic;
+}
+@media screen and (max-width :32.5rem) {
+    .loginPageWidget{
+        height:75%;
+    }
 }

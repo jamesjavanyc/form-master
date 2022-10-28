@@ -1,65 +1,64 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import axiosService from 'axios-config'
+import { AuthContext } from 'context/authentication/auth-context'
+import React, { useContext, useState } from 'react'
 import "./login.css"
+import { useNavigate } from 'react-router-dom';
 
-const Login = (props) => {
+const Login = () => {
 
-    const [action, setAction] = useState("Login")
+    const{ dispatch} = useContext(AuthContext)
 
-    const handleUpdate = (e) => {
+    const navigate  = useNavigate()
+
+    const [userInfo, setUserInfo] = useState({
+        username: localStorage.getItem("username")?localStorage.getItem("username"):"",
+        password: ""
+    })
+
+    const guestHandler = (e) => {
         e.preventDefault()
-        setAction(action => ("Update"))
+        navigate("../guest",{replace:true})
     }
 
-    const getComponent = () => {
-        switch (action) {
-            case "Login":
-                return (
-                    <div className='loginPage'>
-                        <div className='loginPageWidget'>
-                            <form>
-                                <fieldset>
-                                    <legend>Login</legend>
-                                    <input className='loginField' type="text" placeholder='Username' />
-                                    <input className='loginField' type="password" placeholder='Password' />
-                                    <div className='loginBtnBox'>
-                                        <label className="loginRememberMe">
-                                            <span>Remember me</span>
-                                            <input type="checkbox" defaultChecked />
-                                        </label>
-                                        <input className='loginBtn' type="submit" value="Login" />
-                                        <input className='loginBtn' type="submit" value="Update" />
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                )
-            case "Update":
-                return (
-                    <div className='loginPage'>
-                        <div className='loginPageWidget'>
-                            <form>
-                                <fieldset>
-                                    <legend>Login</legend>
-                                    <input className='loginField' type="text" placeholder='Username' />
-                                    <input className='loginField' type="password" placeholder='Password' />
-                                    <div className='loginBtnBox'>
-                                        <input className='loginBtn' type="submit" value="Login" />
-                                        <input className='loginBtn' type="submit" value="Register" />
-                                        <a href='null' className='loginForgetPassword' onClick={handleUpdate}>Forget password?</a>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                )
-            default:
-                throw new Error("Not a supported Login action(Login page)")
+    const loginHandler = async(e) => {
+        e.preventDefault()
+        let res = await axiosService.post("api/auth/login", {
+            username:userInfo.username,
+            password:userInfo.password
+        })
+        localStorage.setItem("username", userInfo.username)
+        dispatch({type:"LOGIN_SUCCESS",payload:res.data});
+        navigate("/")
+    }
+
+    const changeInput = (attri) => {
+        return (value) => {
+            userInfo[attri] = value
+            setUserInfo(userInfo => ({ ...userInfo }))
         }
     }
 
     return (
-        getComponent()
+        <div className='loginPage'>
+            <div className='loginPageWidget'>
+                <form>
+                    <fieldset>
+                        <legend>Login</legend>
+                        <input className='loginField' type="text" placeholder='Username' value={userInfo.username} onChange={e => { changeInput("username")(e.target.value) }} />
+                        <input className='loginField' type="password" placeholder='Password' onChange={e => { changeInput("password")(e.target.value) }} />
+                        <div className='loginBtnBox'>
+                            {/* <label className="loginRememberMe">
+                                <span>Remember me</span>
+                                <input type="checkbox" defaultChecked />
+                            </label> */}
+                            <input className='loginBtn' type="submit" value="Login" onClick={loginHandler} />
+                            <input className='loginBtn' type="submit" value="I'm a guest" onClick={guestHandler} />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     )
 }
 

@@ -1,5 +1,18 @@
 footer{
+    height:5px;
+    position: sticky;
     width: 100%;
     text-align: center;
     border-top: 1px solid gray;
+}
+footer p{
+    font-size: 1px;
+    height: 100%;
+}
+footer p:hover{
+    display:block;
+    font-size: 1rem;
+}
+footer:hover{
+    height: 3rem;
 }

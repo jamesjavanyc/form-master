@@ -1,0 +1,58 @@
+.userBar{
+    padding-right: 2rem;
+    display:flex;
+    align-items: center;
+    gap:0.5rem;
+    position:relative;
+}
+.userBarUsername{
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+.userBarMenu{
+    position: absolute;
+    min-width: 175px;
+    top: 100%;
+    right:10%;
+    list-style: none;
+    text-align: center;
+    font-size: 1rem;
+    background-color: beige;
+    border: 1px solid rgb(190, 195, 198);
+    padding: 0.5rem 0;
+    border-radius: 4px;
+}
+.userBarMenu li{
+    padding: 0.2rem 0;
+    text-decoration: none;
+    color:black;
+}
+.userBarMenu li:hover{
+    background-color: gray;
+    color:white;
+}
+.userIcon{
+    background-color: white;
+}
+
+@media screen and (max-width :32.5rem) {
+    .userBar{
+        position:fixed;
+        right:-13px;
+        bottom: 95px;
+    }
+    .userIcon{
+        display: inline-block;
+    }
+    .userBarMenu{
+        position: absolute;
+        right:100%;
+        top:-50px;
+    }
+
+    .userBarUsername{
+        display:none;
+    }
+
+}

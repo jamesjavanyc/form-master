@@ -1,3 +1,4 @@
+import axiosService from 'axios-config'
 import React, {useState, useMemo} from 'react'
 import "./nav.css"
 
@@ -6,11 +7,14 @@ const Nav = () => {
     const [forms, setForms] = useState(["test","test","test"])
 
     useMemo(() => {
-        //TODO get data
+        const getAllCategory = async()=>{
+            let res = await axiosService.get("api/category/all")
+            setFormCategory(res.data)
+        }
+        getAllCategory()
     }, [])
 
     const iconClick = ()=>{
-        
     }
 
     return (

@@ -1,0 +1,43 @@
+.editAccountBtn{
+    padding:0.5rem 1.5rem;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.5);
+    color:white;
+    border: 0;
+}
+.accountEditWidget > div{
+    margin:1rem auto;
+    color:white;
+}
+.accountEditWidget > div div{
+    display: flex;
+    flex-direction: column;
+}
+.accountEditWidget > div span{
+    margin:0.5rem 0;
+}
+.accountEditWidget h3{
+    text-align: center;
+    margin:1rem 0 0.5rem;
+}
+.accontUpdateError{
+    margin:0 auto;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.errorMsgCtner{
+    min-width:375px;
+    width:50%;
+    min-height: 300px;
+    border-radius: 5px;
+    background-color: rgb(224,224,224);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.3rem;
+}
