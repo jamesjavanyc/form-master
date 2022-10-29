@@ -4,6 +4,7 @@ import Header from 'component/header/Header'
 import { AuthContext } from 'context/authentication/auth-context'
 import FormDisplay from 'component/form-display/FormDisplay'
 import { useNavigate } from 'react-router-dom';
+import CategoryNav from 'component/category-nav/CategoryNav'
 
 
 const FormOperation = () => {
@@ -39,6 +40,7 @@ const FormOperation = () => {
         <div className='operatePage page'>
             <Header></Header>
             <main>
+                <CategoryNav></CategoryNav>
                 <FormDisplay></FormDisplay>
             </main>
         </div>

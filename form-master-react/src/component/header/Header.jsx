@@ -1,4 +1,3 @@
-import Nav from 'component/nav/Nav'
 import SearchBar from 'component/search-bar/SearchBar'
 import UserBar from 'component/user-bar/UserBar'
 import React from 'react'
@@ -13,7 +12,7 @@ const Header = () => {
             <p className='sloganBar'>Mastery your forms.</p>
             <SearchBar></SearchBar>
             <UserBar></UserBar>
-            <Nav></Nav>
+            {/* <Nav></Nav> */}
         </header>
     )
 }

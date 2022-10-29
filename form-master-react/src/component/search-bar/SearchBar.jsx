@@ -1,29 +1,42 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import "./searchBar.css"
 
 const SearchBar = () => {
 
     const [optionsAttri, setOptionsAttri] = useState({
-        options: [1,2,3,4,5],
+        searchType: "form",
+        searchContent: "",
+        options: [],
     })
 
     const [display, setDisplay] = useState({
         inputSelectListener: null
     })
 
+    const navigate = useNavigate()
+
+    const setOptionAttribute = (attr) => {
+        return (val) => {
+            optionsAttri[attr] = val
+            setOptionsAttri({ ...optionsAttri })
+            console.log(optionsAttri.searchContent)
+        }
+    }
+
     const fetchOptions = (inputValue) => {
+        console.log(11111)
+        setOptionsAttri({ ...optionsAttri, searchContent: inputValue })
+        console.log(optionsAttri)
         //TODO： axios 搜索数据
     }
 
-    const inputFocus = (e) => {
-        let listener = e.target.addEventListener('keydown', () => {
-            //TODO： 进入搜索结果页面
-        })
-        setDisplay({ ...display, inputSelectListener: listener })
-    }
-
-    const inputBlur = (e) => {
-        e.target.removeEventListener('keydown', display.inputSelectListener)
+    const enterKeyHandler = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            setOptionsAttri({ ...optionsAttri, options: [] })
+            navigate(`../search?type=${optionsAttri.searchType}&content=${optionsAttri.searchContent}`)
+        }
     }
 
     return (
@@ -33,14 +46,14 @@ const SearchBar = () => {
             }}>
                 <label htmlFor="formSearchIndex">
                     <input type="text" className='searchBarInputSelect'
-                        onCompositionEnd={e => fetchOptions(e.target.value)}
-                        onFocus={inputFocus}
-                        onBlur={inputBlur} />
-                    <select>
+                        // onCompositionEnd={e => fetchOptions(e.target.value)}
+                        onChange={(e) => setOptionAttribute("searchContent")(e.target.value)}
+                        onKeyDown={enterKeyHandler} />
+                    <select onChange={(e) => setOptionAttribute("searchType")(e.target.value)}>
                         <option value="form" className='indexTypeOption'>
                             Form
                         </option>
-                        <option value="customer" className='indexTypeOption'>
+                        <option value="index" className='indexTypeOption'>
                             Index
                         </option>
                     </select>

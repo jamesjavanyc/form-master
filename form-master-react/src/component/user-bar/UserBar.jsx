@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import "./user-bar.css"
 import { Link, useNavigate } from 'react-router-dom';
 import AccountEditWidget from 'component/edit-account/AccountEditWidget';
+import axiosService from 'axios-config';
 
 const UserBar = () => {
 
@@ -28,6 +29,7 @@ const UserBar = () => {
                 setDisplay({ ...display, editAccount: true })
                 return
             case "Logout":
+                axiosService.post("api/auth/logout")
                 dispatch({ type: "LOGOUT" });
                 navigate("../login", { replace: true })
                 return
@@ -45,10 +47,10 @@ const UserBar = () => {
             <div className='userBar' onMouseOver={showMenu} onMouseLeave={hideMenu}>
                 <span className='userBarUsername'>{user.username}</span>
                 <img className="headerIcon userIcon"
-                    src={user.profileImage?user.profileImage:"./icons/user.png"} alt="user icon" onClick={display.showMenu ? hideMenu : showMenu} />
+                    src={user.profileImage?user.profileImage:"./icons/user.png"} alt="user icon" />
                 <ul className='userBarMenu' style={{ display: display.showMenu ? "block" : "none" }}
                     onClick={(e) => actionHandler(e.target.innerText)}>
-                    <Link to="./../dashboard" >
+                    <Link to="/dashboard" >
                         <li >
                             Dashboard
                         </li>
@@ -57,13 +59,13 @@ const UserBar = () => {
                         Account
                     </li></Link>
                     {user.authorization.indexOf("ADMIN") === -1 ? <></> :
-                        <Link to="./../admin" >
+                        <Link to="/admin" >
                             <li>
                                 Admin
                             </li>
                         </Link>}
                     {user.authorization.indexOf("HUMAN_RESOURCE") === -1 ? <></> :
-                        <Link to="./../human-resource" >
+                        <Link to="/human-resource" >
                             <li>
                                 Human Resource
                             </li>

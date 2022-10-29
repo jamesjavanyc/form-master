@@ -35,32 +35,33 @@ axiosService.interceptors.response.use(
     },
     error => {
         let errObj
-        if (error.response.status == 400) {
+        if (error.response.status === 400) {
             errObj={
                 message: "参数信息有误",
                 center: true
             };
             return;
-        } else if (error.response.status == 302) {
+        } else if (error.response.status === 401) {
             errObj={
                 message: "用户未登录",
                 center: true
             };
             //router.push("/login");
+            window.location.replace("/login")
             return;
-        } else if (error.response.status == 404) {
+        } else if (error.response.status === 404) {
             errObj={
                 message: "连接失败",
                 center: true
             };
             return;
-        } else if (error.response.status == 500) {
+        } else if (error.response.status === 500) {
             errObj={
                 message: "服务器内部错误",
                 center: true
             };
             return;
-        } else if (error.response.status == 560) {
+        } else if (error.response.status === 560) {
             errObj={
                 message: "数据库异常",
                 center: true

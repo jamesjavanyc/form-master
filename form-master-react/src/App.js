@@ -9,6 +9,8 @@ import Admin from "pages/admin/Admin";
 import HumanResource from "pages/human-resource/HumanResource";
 import DashBoardPage from "pages/dashboard/DashBoardPage";
 import Home from "pages/homepage/Home";
+import Search from "pages/search/Search";
+import AuthWrapper from "wrapper/auth-wrapper/AuthWrapper";
 
 function App() {
 
@@ -18,12 +20,13 @@ function App() {
         <AuthContextProvider>
           <Routes>
             <Route path="/">
-              <Route index element={<Home/>}></Route>
-              <Route path="/dashboard" element={<DashBoardPage/>}></Route>
-              <Route path="/form" element={<FormOperation />}></Route>
-              <Route path="/guest" element={<Guest/>}></Route>
+              <Route index element={<Home />}></Route>
               <Route path="/login" element={<Login />}></Route>
+              <Route path="/dashboard" element={<DashBoardPage />}></Route>
+              <Route path="/form" element={<FormOperation />}></Route>
+              <Route path="/guest" element={<Guest />}></Route>
               <Route path="/admin" element={<Admin />}></Route>
+              <Route path="/search" element={<Search />}></Route>
               <Route path="/human-resource" element={<HumanResource />}></Route>
             </Route>
           </Routes>

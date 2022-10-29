@@ -2,14 +2,14 @@ import axiosService from 'axios-config'
 import React, {useState, useMemo} from 'react'
 import "./nav.css"
 
-const Nav = () => {
+const CategoryNav = () => {
     const [formCategory, setFormCategory] = useState(["tax 2022 intake","I765 intake","green card renew"])
     const [forms, setForms] = useState(["test","test","test"])
 
     useMemo(() => {
         const getAllCategory = async()=>{
             let res = await axiosService.get("api/category/all")
-            setFormCategory(res.data)
+            // setFormCategory(res.data)
         }
         getAllCategory()
     }, [])
@@ -40,4 +40,4 @@ const Nav = () => {
     )
 }
 
-export default Nav
+export default CategoryNav
